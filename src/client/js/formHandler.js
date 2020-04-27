@@ -1,8 +1,13 @@
 import 'regenerator-runtime/runtime';
 
+const polarityElement = document.getElementById('polarityElement');
+const subjectivityElement = document.getElementById('subjectivityElement');
+
 export const handleSubmit = (event) => {
   event.preventDefault();
 
+  polarityElement.setAttribute('hidden', '');
+  subjectivityElement.setAttribute('hidden', '');
   const text = document.getElementById('article').value;
 
   if (Client.validateInput(text) !== 'not valid') {
@@ -12,7 +17,7 @@ export const handleSubmit = (event) => {
       updateUI(data);
     });
   } else {
-    alert('Please use a valid URL or a short text');
+    alert('Please use a valid URL or a text shorter then 140 characters');
   }
 };
 
@@ -36,6 +41,12 @@ const postData = async function (text = '', sentimentMode = 'tweet') {
 
 const updateUI = (data) => {
   const { polarity, subjectivity } = data;
+
+  polarityElement.removeAttribute('hidden');
   document.getElementById('polarity').innerHTML = polarity;
-  document.getElementById('subjectivity').innerHTML = subjectivity;
+
+  if (subjectivity !== 'unknown') {
+    subjectivityElement.removeAttribute('hidden');
+    document.getElementById('subjectivity').innerHTML = subjectivity;
+  }
 };
