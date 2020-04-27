@@ -1,19 +1,41 @@
-function handleSubmit(event) {
+import 'regenerator-runtime/runtime';
+
+export const handleSubmit = (event) => {
   event.preventDefault();
 
-  // check what text was put into the form field
-  let formText = document.getElementById('name').value;
+  const text = document.getElementById('article').value;
 
-  Client.checkForName(formText);
-
-  console.log('::: Form Submitted :::');
-  fetch('http://localhost:8080/test')
-    .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      document.getElementById('results').innerHTML = data.message;
+  if (Client.validateInput(text)) {
+    postData(text).then((data) => {
+      console.log(data);
+      updateUI(data);
     });
-}
+  } else {
+    alert('Please use a valid URL');
+  }
+};
 
-export { handleSubmit };
+const postData = async function (text = '') {
+  const response = await fetch('http://localhost:8080/test', {
+    method: 'POST',
+    credentials: 'same-origin',
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ text: text })
+  });
+
+  try {
+    const newData = await response.json();
+    return newData;
+  } catch (err) {
+    console.log('Error: ', err);
+  }
+};
+
+const updateUI = (data) => {
+  const { polarity, subjectivity } = data;
+  document.getElementById('polarity').innerHTML = polarity;
+  document.getElementById('subjectivity').innerHTML = subjectivity;
+};

@@ -20,14 +20,16 @@
         <main>
             <section>
                 <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
+                    <input id="article" type="text" name="input" value="" placeholder="Article text or Url">
                     <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             <section>
 
             <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
+                <strong>Article's polarity:</strong>
+                <div id="polarity"></div>
+                <strong>Article's subjectivity:</strong>
+                <div id="subjectivity"></div>
             </section>
         </main>
 
