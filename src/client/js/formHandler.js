@@ -5,25 +5,25 @@ export const handleSubmit = (event) => {
 
   const text = document.getElementById('article').value;
 
-  if (Client.validateInput(text)) {
-    postData(text).then((data) => {
+  if (Client.validateInput(text) !== 'not valid') {
+    const sentimentMode = Client.validateInput(text);
+    postData(text, sentimentMode).then((data) => {
       console.log(data);
       updateUI(data);
     });
   } else {
-    alert('Please use a valid URL');
+    alert('Please use a valid URL or a short text');
   }
 };
 
-const postData = async function (text = '') {
+const postData = async function (text = '', sentimentMode = 'tweet') {
   const response = await fetch('http://localhost:8080/test', {
     method: 'POST',
     credentials: 'same-origin',
-    mode: 'cors',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ text: text })
+    body: JSON.stringify({ text: text, mode: sentimentMode })
   });
 
   try {

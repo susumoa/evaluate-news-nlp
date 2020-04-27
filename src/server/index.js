@@ -34,7 +34,7 @@ app.post('/test', (req, res) => {
   textapi.sentiment(
     {
       text: req.body.text,
-      mode: 'document'
+      mode: req.body.mode
     },
     function (error, response) {
       console.log(response);
