@@ -1,13 +1,10 @@
 import 'regenerator-runtime/runtime';
 
-const polarityElement = document.getElementById('polarityElement');
-const subjectivityElement = document.getElementById('subjectivityElement');
-
 export const handleSubmit = (event) => {
   event.preventDefault();
 
-  polarityElement.setAttribute('hidden', '');
-  subjectivityElement.setAttribute('hidden', '');
+  document.getElementById('polarityElement').setAttribute('hidden', '');
+  document.getElementById('subjectivityElement').setAttribute('hidden', '');
   const text = document.getElementById('article').value;
 
   if (Client.validateInput(text) !== 'not valid') {
@@ -21,7 +18,7 @@ export const handleSubmit = (event) => {
   }
 };
 
-const postData = async function (text = '', sentimentMode = 'tweet') {
+export const postData = async function (text = '', sentimentMode = 'tweet') {
   const response = await fetch('http://localhost:8080/test', {
     method: 'POST',
     credentials: 'same-origin',
@@ -39,16 +36,14 @@ const postData = async function (text = '', sentimentMode = 'tweet') {
   }
 };
 
-const updateUI = (data) => {
+export const updateUI = (data) => {
   const { polarity, subjectivity } = data;
 
-  polarityElement.removeAttribute('hidden');
+  document.getElementById('polarityElement').removeAttribute('hidden');
   document.getElementById('polarity').innerHTML = polarity;
 
   if (subjectivity !== 'unknown') {
-    subjectivityElement.removeAttribute('hidden');
+    document.getElementById('subjectivityElement').removeAttribute('hidden');
     document.getElementById('subjectivity').innerHTML = subjectivity;
   }
 };
-
-module.exports = { handleSubmit, postData, updateUI };

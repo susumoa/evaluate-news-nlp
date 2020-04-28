@@ -1,4 +1,4 @@
-const validateInput = require('./inputChecker');
+const { validateInput } = require('./inputChecker');
 
 test('whitespace input is not valid', () => {
   expect(validateInput(' ')).toBe('not valid');
