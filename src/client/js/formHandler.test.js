@@ -1,4 +1,4 @@
-const { handleSubmit, postData, updateUI } = require('./formHandler');
+const { handleSubmit, updateUI } = require('./formHandler');
 
 test('handleSubmit is a function', () => {
   expect(typeof handleSubmit).toBe('function');

@@ -1,48 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Test</title>
-        <link rel="shortcut icon" href="./img/favicon.ico">
-        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
-    </head>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  </head>
 
-    <body>
+  <body>
 
-        <header>
-            <img src="https://image.flaticon.com/icons/svg/2456/2456512.svg" alt="page analyzation img" />
-            <h1 class="">
-              News Article evaluation with Natural Language Processing
-            </h1>
-        </header>
+    <header>
+      <img src="https://image.flaticon.com/icons/svg/2456/2456512.svg" alt="page analyzation img" />
+      <h1 class="">
+        News Evaluation With Natural Language Processing
+      </h1>
+    </header>
 
-        <main>
-          <section>
-            <p>Enter a short text or URL to start. Aylien API will analyse your input and extracting sentiment from it.</p>
-            <p>A piece of text such as a tweet, a review or an article can provide us with valuable insight about the author's emotions and perspective: whether the tone is positive, neutral or negative, and whether the text is subjective (meaning it's reflecting the author's opinion) or objective (meaning it's expressing a fact).</p>
-          </section>
-            <section>
-                <form onsubmit="return Client.handleSubmit(event)">
-                    <input id="article" type="text" name="input" value="" placeholder="Short text or URL">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
-                </form>
-            <section>
+    <main>
+      <section>
+        <p>Enter a short text or URL to start. Aylien API will analyse your input and extract sentiment from it.</p>
+        <p>A piece of text such as a tweet, a review or an article can provide us with valuable insight about the author's emotions and perspective: whether the tone is positive, neutral or negative, and whether the text is subjective (meaning it's reflecting the author's opinion) or objective (meaning it's expressing a fact).</p>
+      </section>
+      <section>
+        <form onsubmit="return Client.handleSubmit(event)">
+          <input id="article" type="text" name="input" value="" placeholder="Short text or URL">
+          <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+        </form>
+      <section>
 
-            <section>
-              <div id="polarityElement" hidden>
-                <strong>Aylien says the polarity is:</strong>
-                <div id="polarity"></div>
-              </div>
-              <div id="subjectivityElement" hidden>
-                <strong>Aylien says the subjectivity is:</strong>
-                <div id="subjectivity"></div>
-              </div>
-            </section>
-        </main>
+      <section>
+        <div id="polarityElement" hidden>
+          <strong>Aylien says the polarity is:</strong>
+          <div id="polarity"></div>
+        </div>
+        <div id="subjectivityElement" hidden>
+          <strong>Aylien says the subjectivity is:</strong>
+          <div id="subjectivity"></div>
+        </div>
+      </section>
+    </main>
 
-        <footer>
-            <p>Copyright 2020</p>
-        </footer>
+    <footer>
+      <p>Copyright 2020</p>
+    </footer>
 
-    </body>
+    <script>
+      // Check that service workers are supported
+      if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
+    </script>
+  </body>
 </html>
