@@ -50,3 +50,5 @@ const updateUI = (data) => {
     document.getElementById('subjectivity').innerHTML = subjectivity;
   }
 };
+
+module.exports = { handleSubmit, postData, updateUI };

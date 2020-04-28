@@ -13,3 +13,5 @@ export function validateInput(inputText) {
     return 'not valid';
   }
 }
+
+module.exports = validateInput;
